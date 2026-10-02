@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Brother.exe 💀</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#111,#252525);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.screen{
+    width:92%;
+    max-width:450px;
+    text-align:center;
+}
+
+.card{
+    background:#181818;
+    border:2px solid #444;
+    border-radius:25px;
+    padding:30px 22px;
+    box-shadow:0 15px 40px rgba(0,0,0,.5);
+}
+
+h1{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+p{
+    color:#bbb;
+    line-height:1.5;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin:8px 0;
+    border:none;
+    border-radius:15px;
+    background:#444;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover{
+    transform:scale(1.03);
+    background:#666;
+}
+
+.hidden{
+    display:none;
+}
+
+.emoji{
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.progress{
+    height:12px;
+    background:#333;
+    border-radius:20px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+.bar{
+    height:100%;
+    width:0%;
+    background:#fff;
+    transition:.2s;
+}
+
+#movingButton{
+    position:relative;
+}
+
+.small{
+    font-size:13px;
+    color:#777;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- SCREEN 1 -->
+
+<div class="screen" id="screen1">
+
+<div class="card">
+
+<div class="emoji">💀</div>
+
+<h1>Welcome, Brother.</h1>
+
+<p>
+You have been selected for a completely unnecessary
+interactive experience.
+</p>
+
+<p>
+⚠️ Proceed at your own risk.
+</p>
+
+<button onclick="startGame()">
+START 😈
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SCREEN 2 -->
+
+<div class="screen hidden" id="loading">
+
+<div class="card">
+
+<div class="emoji">🌀</div>
+
+<h1 id="loadingTitle">
+Loading...
+</h1>
+
+<p id="loadingText">
+Please wait.
+</p>
+
+<div class="progress">
+
+<div class="bar" id="bar"></div>
+
+</div>
+
+<p id="percent">0%</p>
+
+</div>
+
+</div>
+
+
+
+<!-- SCREEN 3 -->
+
+<div class="screen hidden" id="screen3">
+
+<div class="card">
+
+<div class="emoji">🔍</div>
+
+<h1>Brother Scan</h1>
+
+<p>
+Scanning elder-brother characteristics...
+</p>
+
+<button onclick="scanResult()">
+START SCAN
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SCREEN 4 -->
+
+<div class="screen hidden" id="screen4">
+
+<div class="card">
+
+<div class="emoji">📊</div>
+
+<h1>SCAN COMPLETE</h1>
+
+<p>
+
+Attitude: <b>97%</b><br>
+Unnecessary Advice: <b>100%</b><br>
+Acts Like Dad: <b>86%</b><br>
+Shares Snacks: <b>2%</b><br>
+Annoying Level: <b>MAXIMUM 💀</b>
+
+</p>
+
+<button onclick="nextQuestion()">
+CONTINUE
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SCREEN 5 -->
+
+<div class="screen hidden" id="screen5">
+
+<div class="card">
+
+<div class="emoji">💸</div>
+
+<h1>IMPORTANT QUESTION</h1>
+
+<p>
+Your sibling asks:
+<br><br>
+<b>"Bro, give me ₹500."</b>
+</p>
+
+<button onclick="moneyAnswer('yes')">
+💸 Give ₹500
+</button>
+
+<button onclick="moneyAnswer('no')">
+❌ Say NO
+</button>
+
+<button onclick="moneyAnswer('run')">
+🏃 Run Away
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SCREEN 6 -->
+
+<div class="screen hidden" id="screen6">
+
+<div class="card">
+
+<div class="emoji">📱</div>
+
+<h1>PHONE TEST</h1>
+
+<p>
+Your sibling says:
+<br><br>
+<b>"Brooo, give me your phone for 2 minutes."</b>
+</p>
+
+<button onclick="phoneAnswer()">
+📱 Give Phone
+</button>
+
+<button onclick="phoneAnswer()">
+🚫 NEVER
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SCREEN 7 -->
+
+<div class="screen hidden" id="screen7">
+
+<div class="card">
+
+<div class="emoji">🚪</div>
+
+<h1>ESCAPE ROOM</h1>
+
+<p>
+Choose the correct button to escape.
+</p>
+
+<button id="movingButton" onclick="escapeButton()">
+🚪 ESCAPE
+</button>
+
+<button onclick="fakeEscape()">
+🔴 RED BUTTON
+</button>
+
+<button onclick="fakeEscape()">
+🔵 BLUE BUTTON
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SCREEN 8 -->
+
+<div class="screen hidden" id="screen8">
+
+<div class="card">
+
+<div class="emoji">🎁</div>
+
+<h1>FINAL QUESTION</h1>
+
+<p>
+Be honest...
+<br><br>
+<b>Am I the best sibling?</b>
+</p>
+
+<button onclick="finalAnswer()">
+YES ❤️
+</button>
+
+<button onclick="finalAnswer()">
+OBVIOUSLY 😌
+</button>
+
+<button onclick="finalAnswer()">
+I HAVE NO CHOICE 💀
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- FINAL SCREEN -->
+
+<div class="screen hidden" id="final">
+
+<div class="card">
+
+<div class="emoji">😂</div>
+
+<h1>MISSION COMPLETE</h1>
+
+<p>
+
+Congratulations, Brother.
+
+<br><br>
+
+You successfully wasted your time
+on your sibling's extremely important website.
+
+<br><br>
+
+You are officially:
+
+<br>
+
+<b>THE MOST ANNOYING ELDER BROTHER 😂</b>
+
+<br><br>
+
+But...
+
+<br><br>
+
+❤️ <b>LOVE YOU BRO</b> ❤️
+
+</p>
+
+<button onclick="restart()">
+🔄 DO IT AGAIN
+</button>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+function hideAll(){
+
+    document.querySelectorAll(".screen").forEach(function(screen){
+
+        screen.classList.add("hidden");
+
+    });
+
+}
+
+
+function show(id){
+
+    hideAll();
+
+    document.getElementById(id).classList.remove("hidden");
+
+}
+
+
+function startGame(){
+
+    show("loading");
+
+    let progress=0;
+
+    const bar=document.getElementById("bar");
+    const percent=document.getElementById("percent");
+    const title=document.getElementById("loadingTitle");
+    const text=document.getElementById("loadingText");
+
+    const messages=[
+
+        "Detecting elder brother...",
+        "Checking attitude...",
+        "Calculating unnecessary advice...",
+        "Loading sibling complaints...",
+        "Analyzing snack-sharing behaviour...",
+        "Detecting remote-control ownership...",
+        "Almost done..."
+
+    ];
+
+    const timer=setInterval(function(){
+
+        progress+=5;
+
+        if(progress>100){
+            progress=100;
+        }
+
+        bar.style.width=progress+"%";
+
+        percent.innerText=progress+"%";
+
+        let index=Math.floor(progress/15);
+
+        if(index>=messages.length){
+            index=messages.length-1;
+        }
+
+        title.innerText=messages[index];
+
+        if(progress===100){
+
+            clearInterval(timer);
+
+            text.innerText=
+            "Brother successfully detected. 💀";
+
+            setTimeout(function(){
+
+                show("screen3");
+
+            },1200);
+
+        }
+
+    },150);
+
+}
+
+
+
+function scanResult(){
+
+    show("screen4");
+
+}
+
+
+
+function nextQuestion(){
+
+    show("screen5");
+
+}
+
+
+
+function moneyAnswer(answer){
+
+    const messages={
+
+        yes:
+        "WAIT WHAT?! 😳 You actually gave ₹500?! You're officially the coolest brother.",
+
+        no:
+        "Expected. Elder brother wallet successfully protected. 💀",
+
+        run:
+        "🏃 BROTHER HAS LEFT THE CHAT."
+
+    };
+
+    alert(messages[answer]);
+
+    show("screen6");
+
+}
+
+
+
+function phoneAnswer(){
+
+    alert(
+        "⚠️ ERROR: Sibling has been given access to the phone. Privacy level = 0%. 😂"
+    );
+
+    show("screen7");
+
+}
+
+
+
+let escapeAttempts=0;
+
+
+function escapeButton(){
+
+    escapeAttempts++;
+
+    const button=document.getElementById("movingButton");
+
+    if(escapeAttempts<5){
+
+        button.style.transform=
+        "translate("+
+        (Math.random()*180-90)+
+        "px,"+
+        (Math.random()*100-50)+
+        "px)";
+
+        alert("HAHAHA 😂 YOU CAN'T ESCAPE!");
+
+    }else{
+
+        alert(
+            "🚨 ESCAPE FAILED 🚨\n\n" +
+            "You have been trapped by your younger sibling."
+        );
+
+        show("screen8");
+
+    }
+
+}
+
+
+
+function fakeEscape(){
+
+    alert(
+        "❌ WRONG BUTTON.\n\n" +
+        "Did you really think it would be that easy? 💀"
+    );
+
+}
+
+
+
+function finalAnswer(){
+
+    show("final");
+
+}
+
+
+
+function restart(){
+
+    escapeAttempts=0;
+
+    const button=document.getElementById("movingButton");
+
+    button.style.transform="none";
+
+    show("screen1");
+
+}
+
+</script>
+
+</body>
+</html>
